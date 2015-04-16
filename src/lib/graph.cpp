@@ -1,33 +1,27 @@
-class graph {
-	vertex **V;
-	edge **E;
-	int vertexNum;
-	int edgeNum;
-public:
-	graph();
-	~graph();
-	void addVertex(/*... optional ...*/);
-	void setVertex(/*...*/);
-	void addEdge(vertex *from, vertex *to, /*... optional ...*/);
-	void setEdge(/*...*/);
+#include "settings.h"
+
+graph::graph() : vertexNum(0), edgeNum(0) {}
+
+int graph::addVertex() {
+	V[vertexId] = new vertex(vertexId); 
+	vertexId++;
+	vertexNum++;
+	return vertexNum - 1;
 }
 
-class vertex {
-	/*
-	attributes
-	*/
-public:
-	vertex();
-	~vertex();
+void graph::delVertex(int id) {
+	delete V[id];
+	vertexCount--;
 }
 
-class edge {
-	vertex* from;
-	vertex* to;
-	/*
-	attributes
-	*/
-public:
-	edge();
-	~edge();	
+void graph::addEdge(int fromVertex, int toVertex, int length) {
+	E[edgeId] = new edge(edgeId, fromVertex, toVertex, length);
+	edgeId++;
+	edgeNum++;
+	return edgeId - 1;
+}
+
+void graph::deleteEdge(int id) {
+	delete E[id];
+	edgeCount--;
 }
